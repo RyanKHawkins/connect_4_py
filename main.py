@@ -70,6 +70,12 @@ def play_turn(player):
     check_for_win(board)
 
 
+def column_full(column):
+    if board[(0, column)] == EMPTY:
+        return False
+    return True
+
+
 def check_if_full(board):
     for row in range(6):
         for column in range(7):
