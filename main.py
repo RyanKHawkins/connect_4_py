@@ -76,6 +76,14 @@ def column_full(column):
     return True
 
 
+def board_full(board):
+    if not EMPTY in board:
+        print("Tie gamebf")
+        return True
+
+    return False
+
+
 def check_if_full(board):
     for row in range(6):
         for column in range(7):
