@@ -130,11 +130,10 @@ def display_title(title):
 
 board = create_board()
 
-winner = ""
-
 
 def play_game():
     clear()
+    winner = ""
     display_title("connect four")
 
     current_player = get_initials()
