@@ -79,7 +79,6 @@ def board_full(board):
         for column in range(7):
             if board[(row, column)] == EMPTY:
                 return False
-    print("Tie game.")
     return True
 
 
@@ -98,6 +97,7 @@ def check_for_win(board):
     check_verticals(board)
     check_diagonals(board)
 
+    return False
 
 def horizontal_win(board):
     pass
@@ -129,6 +129,7 @@ def display_title(title):
 
 board = create_board()
 
+winner = ""
 
 def play_game():
     clear()
@@ -141,8 +142,11 @@ def play_game():
     game_still_going = True
     while game_still_going:
         play_turn(current_player)
-        check_for_win(board)
-        if board_full(board):
+        if check_for_win(board):
+            winner = current_player
+            print(f"Congratulation, {winner}. You won!")
+            break
+        if board_full(board) and not check_for_win(board):
             game_still_going = False
             #break
 
