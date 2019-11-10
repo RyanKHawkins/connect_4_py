@@ -133,12 +133,12 @@ board = create_board()
 def play_game():
     clear()
     display_title("connect four")
-    game_still_going = True
 
     current_player = get_initials()
     waiting_player = get_initials()
     print()
 
+    game_still_going = True
     while game_still_going:
         play_turn(current_player)
         check_for_win(board)
