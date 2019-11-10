@@ -66,7 +66,7 @@ def play_turn(player):
     clear()
 
     drop_piece(player, column)
-    display_board(board)
+    #display_board(board)
     check_for_win(board)
 
 
