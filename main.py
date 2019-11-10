@@ -145,10 +145,10 @@ def play_game():
         if check_for_win(board):
             winner = current_player
             print(f"Congratulation, {winner}. You won!")
-            break
-        if board_full(board) and not check_for_win(board):
             game_still_going = False
-            #break
+        elif board_full(board):
+            print("You tied.")
+            game_still_going = False
 
         current_player, waiting_player = waiting_player, current_player
 
