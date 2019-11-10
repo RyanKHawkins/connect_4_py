@@ -139,6 +139,7 @@ def play_game():
 
     current_player = get_initials()
     waiting_player = get_initials()
+    print()
 
     while game_still_going:
         play_turn(current_player)
