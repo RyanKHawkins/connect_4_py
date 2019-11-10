@@ -67,7 +67,6 @@ def play_turn(player):
 
     drop_piece(player, column)
     #display_board(board)
-    check_for_win(board)
 
 
 def column_full(column):
