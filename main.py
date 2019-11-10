@@ -99,6 +99,7 @@ def check_for_win(board):
 
     return False
 
+
 def horizontal_win(board):
     pass
 
@@ -130,6 +131,7 @@ def display_title(title):
 board = create_board()
 
 winner = ""
+
 
 def play_game():
     clear()
