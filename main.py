@@ -77,14 +77,6 @@ def column_full(column):
 
 
 def board_full(board):
-    if not EMPTY in board:
-        print("Tie gamebf")
-        return True
-
-    return False
-
-
-def check_if_full(board):
     for row in range(6):
         for column in range(7):
             if board[(row, column)] == EMPTY:
@@ -104,12 +96,12 @@ def drop_piece(player, column):
 
 
 def check_for_win(board):
-    check_horizontals(board)
+    horizontal_win(board)
     check_verticals(board)
     check_diagonals(board)
 
 
-def check_horizontals(board):
+def horizontal_win(board):
     pass
 
 
@@ -151,7 +143,7 @@ def play_game():
     while game_still_going:
         play_turn(current_player)
         check_for_win(board)
-        if check_if_full(board):
+        if board_full(board):
             game_still_going = False
             #break
 
