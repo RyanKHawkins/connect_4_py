@@ -131,7 +131,7 @@ board = create_board()
 
 
 def play_game():
-
+    clear()
     display_title("connect four")
     game_still_going = True
 
