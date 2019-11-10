@@ -49,6 +49,7 @@ def display_board(board):
 
 
 def play_turn(player):
+    clear()
     display_board(board)
     column_choice = input(f"Player {player}, place your piece (1-7): ")
     valid_choice = False
@@ -62,8 +63,6 @@ def play_turn(player):
         else:
             valid_choice = False
             column_choice = input("That column is full. Choose another one: ")
-
-    clear()
 
     drop_piece(player, column)
     #display_board(board)
