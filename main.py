@@ -67,6 +67,13 @@ def play_turn(player):
     drop_piece(player, column)
     #display_board(board)
 
+def computer_turn(board, player):
+    available_columns = []
+    for column in range(7):
+        if board[(0, column)] == EMPTY:
+            available_columns.append(column)
+    column_choice = random.choice(available_columns)
+    drop_piece(player, column_choice) 
 
 def column_full(column):
     if board[(0, column)] == EMPTY:
@@ -149,7 +156,10 @@ def play_game():
 
     game_still_going = True
     while game_still_going:
-        play_turn(current_player)
+        if current_player != "CP":
+            play_turn(current_player)
+        else:
+            computer_turn(board, current_player)
         if check_for_win(board):
             winner = current_player
             print(f"Congratulation, {winner}. You won!")
