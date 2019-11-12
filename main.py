@@ -1,6 +1,6 @@
 # Title:  Connect Four
 # Author:  Ryan Hawkins
-# Update:  2019-11-04
+# Update:  2019-11-12
 
 import random
 import os
@@ -112,8 +112,7 @@ def check_diagonals(board):
     pass
 
 
-def get_initials():
-    name = input("\nWhat is your name?\n")
+def get_initials(name):
     initials = ""
     for name in name.upper().split():
         initials += name[0]
@@ -136,8 +135,16 @@ def play_game():
     winner = ""
     display_title("connect four")
 
-    current_player = get_initials()
-    waiting_player = get_initials()
+    num_players = int(input("\nSelect number of players (1 or 2):  "))
+    player1 = input("Player 1, what is your name?  ")
+    current_player = get_initials(player1)
+    if num_players == 2:
+        player2 = input("Player 2, what is your name?  ")
+        waiting_player = get_initials(player2)
+    else: # set up computer
+        waiting_player = "CP"
+        print("You will play CP, the computer.")
+
     print()
 
     game_still_going = True
