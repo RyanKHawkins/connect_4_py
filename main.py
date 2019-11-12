@@ -118,6 +118,7 @@ def horizontal_win(board):
         for column in range(4):  # Limited columns to avoid KeyError
             if board[(row, column)] == board[(row, column + 1)] == board[(
                     row, column + 2)] == board[(row, column + 3)] != EMPTY:
+                board[(row, column)] = board[(row, column + 1)] = board[(row, column + 2)] = board[(row, column + 3)] = "WON"
                 return True
     return False
 
