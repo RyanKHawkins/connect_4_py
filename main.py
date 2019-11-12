@@ -105,15 +105,17 @@ def drop_piece(player, column):
 def check_for_win(board):
     if horizontal_win(board):
         return True
-    check_verticals(board)
-    check_diagonals(board)
+    if check_verticals(board):
+        return True
+    if check_diagonals(board):
+        return True
 
     return False
 
 
 def horizontal_win(board):
     for row in range(6):
-        for column in range(4):
+        for column in range(4): # Limited columns to avoid KeyError
             if board[(row, column)] == board[(row, column + 1)] == board[(row, column + 2)] == board[(row, column + 3)] != EMPTY:
                 return True
     return False
