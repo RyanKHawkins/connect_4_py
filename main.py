@@ -67,13 +67,16 @@ def play_turn(player):
     drop_piece(player, column)
     #display_board(board)
 
+
 def computer_turn(board, player):
+    # computer randomly chooses from available columns
     available_columns = []
     for column in range(7):
         if board[(0, column)] == EMPTY:
             available_columns.append(column)
     column_choice = random.choice(available_columns)
-    drop_piece(player, column_choice) 
+    drop_piece(player, column_choice)
+
 
 def column_full(column):
     if board[(0, column)] == EMPTY:
@@ -148,7 +151,7 @@ def play_game():
     if num_players == 2:
         player2 = input("Player 2, what is your name?  ")
         waiting_player = get_initials(player2)
-    else: # set up computer
+    else:  # set up computer
         waiting_player = "CP"
         print("You will play CP, the computer.")
 
@@ -161,10 +164,12 @@ def play_game():
         else:
             computer_turn(board, current_player)
         if check_for_win(board):
+            display_board(board)
             winner = current_player
             print(f"Congratulation, {winner}. You won!")
             game_still_going = False
         elif board_full(board):
+            display_board(board)
             print("You tied.")
             game_still_going = False
 
