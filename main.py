@@ -164,11 +164,13 @@ def play_game():
         else:
             computer_turn(board, current_player)
         if check_for_win(board):
+            clear()
             display_board(board)
             winner = current_player
             print(f"Congratulation, {winner}. You won!")
             game_still_going = False
         elif board_full(board):
+            clear()
             display_board(board)
             print("You tied.")
             game_still_going = False
