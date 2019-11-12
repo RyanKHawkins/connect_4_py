@@ -115,14 +115,20 @@ def check_for_win(board):
 
 def horizontal_win(board):
     for row in range(6):
-        for column in range(4): # Limited columns to avoid KeyError
-            if board[(row, column)] == board[(row, column + 1)] == board[(row, column + 2)] == board[(row, column + 3)] != EMPTY:
+        for column in range(4):  # Limited columns to avoid KeyError
+            if board[(row, column)] == board[(row, column + 1)] == board[(
+                    row, column + 2)] == board[(row, column + 3)] != EMPTY:
                 return True
     return False
 
 
 def check_verticals(board):
-    pass
+    for row in range(3):
+        for column in range(7):  # Limited rows to avoid KeyError
+            if board[(row, column)] == board[(row + 1, column)] == board[(
+                    row + 2, column)] == board[(row + 3, column)] != EMPTY:
+                return True
+    return False
 
 
 def check_diagonals(board):
@@ -187,9 +193,13 @@ def play_game():
 
 play_game()
 
-game_play = input("\nWould you like to play again?: ").lower().strip()
-if game_play in ["yes", "y", "yeah"]:
-    board = create_board()
-    play_game()
-else:
-    print("Thanks for playing.")
+valid_response = ["yes", "y", "yeah", "no", "n", "nope"]
+response = ""
+while not response in valid_response:
+    response = input("\nWould you like to play again?: ").lower().strip()
+    if response in ["yes", "y", "yeah"]:
+        board = create_board()
+        play_game()
+    else:
+        print("\nThanks for playing.")
+        break
