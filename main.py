@@ -104,7 +104,7 @@ def drop_piece(player, column):
             placed = True
 
 
-def check_for_win(board):
+def game_won(board):
     if horizontal_win(board):
         return True
     if vertical_win(board):
@@ -202,10 +202,10 @@ def play_game():
             play_turn(current_player)
         else:
             computer_turn(board, current_player)
-        if check_for_win(board) or board_full(board):
+        if game_won(board) or board_full(board):
             clear()
             display_board(board)
-        if check_for_win(board):
+        if game_won(board):
             winner = current_player
             print(f"Congratulations, {winner}. You won!")
             game_still_going = False
