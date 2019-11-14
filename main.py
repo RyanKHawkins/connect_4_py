@@ -12,7 +12,6 @@ def clear():
 
 EMPTY = "   "
 WIN_SYMBOL = "WON"
-
 COMPUTER = "CP"
 
 # BOARD_WIDTH = 6
@@ -172,7 +171,7 @@ def play_game():
         waiting_player = get_initials(player2)
     else:  # set up computer
         waiting_player = COMPUTER
-        
+
     print()
 
     game_still_going = True
