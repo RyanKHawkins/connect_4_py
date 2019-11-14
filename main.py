@@ -13,6 +13,8 @@ def clear():
 EMPTY = "   "
 WIN_SYMBOL = "WON"
 
+COMPUTER = "CP"
+
 # BOARD_WIDTH = 6
 # BOARD_HEIGHT = 7
 
@@ -169,14 +171,13 @@ def play_game():
         player2 = input("Player 2, what is your name?  ")
         waiting_player = get_initials(player2)
     else:  # set up computer
-        waiting_player = "CP"
-        print("You will play CP, the computer.")
-
+        waiting_player = COMPUTER
+        
     print()
 
     game_still_going = True
     while game_still_going:
-        if current_player != "CP":
+        if current_player != COMPUTER:
             play_turn(current_player)
         else:
             computer_turn(board, current_player)
