@@ -107,9 +107,9 @@ def drop_piece(player, column):
 def check_for_win(board):
     if horizontal_win(board):
         return True
-    if check_verticals(board):
+    if vertical_win(board):
         return True
-    if check_diagonals(board):
+    if diagonal_win(board):
         return True
 
     return False
@@ -126,7 +126,7 @@ def horizontal_win(board):
     return False
 
 
-def check_verticals(board):
+def vertical_win(board):
     for row in range(3):
         for column in range(7):  # Limited rows to avoid KeyError
             if board[(row, column)] == board[(row + 1, column)] == board[(
@@ -137,7 +137,7 @@ def check_verticals(board):
     return False
 
 
-def check_diagonals(board):
+def diagonal_win(board):
     for row in range(3):
         for column in range(4):
             # diagonal up to the right
@@ -207,7 +207,7 @@ def play_game():
             display_board(board)
         if check_for_win(board):
             winner = current_player
-            print(f"Congratulation, {winner}. You won!")
+            print(f"Congratulations, {winner}. You won!")
             game_still_going = False
         elif board_full(board):
             print("You tied.")
