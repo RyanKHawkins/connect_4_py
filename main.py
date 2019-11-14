@@ -11,6 +11,7 @@ def clear():
 
 
 EMPTY = "   "
+WIN_SYMBOL = "WON"
 
 # BOARD_WIDTH = 6
 # BOARD_HEIGHT = 7
@@ -118,7 +119,7 @@ def horizontal_win(board):
         for column in range(4):  # Limited columns to avoid KeyError
             if board[(row, column)] == board[(row, column + 1)] == board[(
                     row, column + 2)] == board[(row, column + 3)] != EMPTY:
-                board[(row, column)] = board[(row, column + 1)] = board[(row, column + 2)] = board[(row, column + 3)] = "WON"
+                board[(row, column)] = board[(row, column + 1)] = board[(row, column + 2)] = board[(row, column + 3)] = WIN_SYMBOL
                 return True
     return False
 
@@ -128,6 +129,8 @@ def check_verticals(board):
         for column in range(7):  # Limited rows to avoid KeyError
             if board[(row, column)] == board[(row + 1, column)] == board[(
                     row + 2, column)] == board[(row + 3, column)] != EMPTY:
+                board[(row, column)] = board[(row + 1, column)] = board[(
+                    row + 2, column)] = board[(row + 3, column)] = WIN_SYMBOL
                 return True
     return False
 
@@ -159,7 +162,7 @@ def play_game():
     winner = ""
     display_title("connect four")
 
-    num_players = int(input("\nSelect number of players (1 or 2):  "))
+    num_players = int(input("\nSelect number of human players (1 or 2):  "))
     player1 = input("Player 1, what is your name?  ")
     current_player = get_initials(player1)
     if num_players == 2:
@@ -177,15 +180,14 @@ def play_game():
             play_turn(current_player)
         else:
             computer_turn(board, current_player)
-        if check_for_win(board):
+        if check_for_win(board) or board_full(board):
             clear()
             display_board(board)
+        if check_for_win(board):
             winner = current_player
             print(f"Congratulation, {winner}. You won!")
             game_still_going = False
         elif board_full(board):
-            clear()
-            display_board(board)
             print("You tied.")
             game_still_going = False
 
