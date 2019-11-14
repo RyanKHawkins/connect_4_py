@@ -120,7 +120,8 @@ def horizontal_win(board):
         for column in range(4):  # Limited columns to avoid KeyError
             if board[(row, column)] == board[(row, column + 1)] == board[(
                     row, column + 2)] == board[(row, column + 3)] != EMPTY:
-                board[(row, column)] = board[(row, column + 1)] = board[(row, column + 2)] = board[(row, column + 3)] = WIN_SYMBOL
+                board[(row, column)] = board[(row, column + 1)] = board[(
+                    row, column + 2)] = board[(row, column + 3)] = WIN_SYMBOL
                 return True
     return False
 
@@ -137,7 +138,28 @@ def check_verticals(board):
 
 
 def check_diagonals(board):
-    pass
+    for row in range(3):
+        for column in range(4):
+            # diagonal up to the right
+            if board[(row + 3,
+                      column)] == board[(row + 2, column + 1)] == board[(
+                          row + 1,
+                          column + 2)] == board[(row, column + 3)] != EMPTY:
+                board[(row + 3,
+                       column)] = board[(row + 2, column + 1)] = board[(
+                           row + 1,
+                           column + 2)] = board[(row, column + 3)] = WIN_SYMBOL
+                return True
+            # diagonal down to the right
+            elif board[(row, column)] == board[(row + 1, column + 1)] == board[
+                (row + 2, column + 2)] == board[(row + 3,
+                                                 column + 3)] != EMPTY:
+                board[(row, column)] = board[(row + 1, column + 1)] = board[(
+                    row + 2, column + 2)] = board[(row + 3,
+                                                   column + 3)] = WIN_SYMBOL
+                return True
+
+    return False
 
 
 def get_initials(name):
