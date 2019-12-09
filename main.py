@@ -184,6 +184,7 @@ def play_game():
     winner = ""
     display_title("connect four")
 
+    print()
     num_players = ""
     while num_players not in [1, 2]:
         num_players = int(input("\nSelect number of human players (1 or 2):  "))
