@@ -1,6 +1,5 @@
 # Title:  Connect Four
 # Author:  Ryan Hawkins
-# Update:  2019-11-12
 
 import random
 import os
