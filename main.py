@@ -190,6 +190,9 @@ def play_game():
     if num_players == 2:
         player2 = input("Player 2, what is your name?  ")
         waiting_player = get_initials(player2)
+    if num_players == 2 and current_player == waiting_player:
+        current_player = str(current_player[0] + "1")
+        waiting_player = str(waiting_player[0] + "2")
     else:  # set up computer
         waiting_player = COMPUTER
 
