@@ -3,6 +3,7 @@
 
 import random
 import os
+import time
 
 
 def clear():
@@ -72,6 +73,7 @@ def play_turn(player):
 def computer_turn(board, player):
     # computer randomly chooses from available columns
     available_columns = []
+    time.sleep(.5)
     for column in range(7):
         if board[(0, column)] == EMPTY:
             available_columns.append(column)
