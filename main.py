@@ -188,7 +188,7 @@ def play_game():
 
     print()
     num_players = ""
-    while num_players not in [1, 2]:
+    while num_players not in ["1", "2"]:
         num_players = (
             input("\nSelect number of human players (1 or 2):  "))
     player1 = input("Player 1, what is your name?  ")
