@@ -10,13 +10,6 @@ def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-EMPTY = "   "
-WIN_SYMBOL = "WON"
-COMPUTER = "CP"
-
-# BOARD_WIDTH = 6
-# BOARD_HEIGHT = 7
-
 
 def create_board():
     board = {}
@@ -24,6 +17,19 @@ def create_board():
         for column in range(7):
             board[(row, column)] = EMPTY
     return board
+
+
+
+
+EMPTY = "   "
+WIN_SYMBOL = "WON"
+COMPUTER = "CP"
+board = create_board()
+
+# BOARD_WIDTH = 6
+# BOARD_HEIGHT = 7
+
+
 
 
 def display_board(board):
@@ -56,7 +62,9 @@ def play_turn(player):
     column_choice = input(f"Player {player}, place your piece (1-7): ")
     valid_choice = False
     while not valid_choice:
-        while column_choice not in ["1", "2", "3", "4", "5", "6", "7"]:
+        while column_choice not in ["1", "2", "3", "4", "5", "6", "7", "reset"]:
+            if column_choice is reset:
+                reset_game()
             column_choice = input("Choose from 1 to 7: ")
 
         column = int(column_choice) - 1
@@ -188,9 +196,9 @@ def play_game():
 
     print()
     num_players = ""
-    while num_players not in ["1", "2"]:
+    while num_players not in [1, 2]:
         num_players = (
-            input("\nSelect number of human players (1 or 2):  "))
+            int(input("\nSelect number of human players (1 or 2):  ")))
     player1 = input("Player 1, what is your name?  ")
     current_player = get_initials(player1)
     if num_players == 2:
@@ -236,3 +244,10 @@ while not response in valid_response:
     else:
         print("\nThanks for playing.")
         break
+
+def reset_game():
+    clear()
+    board = create_board()
+    display_board(board)
+    print("reset game")
+    return
