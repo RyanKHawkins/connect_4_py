@@ -1,0 +1,3 @@
+EMPTY = "   "
+WIN_SYMBOL = "WON"
+COMPUTER = "CP"
