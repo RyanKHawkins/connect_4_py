@@ -161,19 +161,15 @@ def play_game():
         current_player, waiting_player = waiting_player, current_player
 
 
-# TODO: Put this in a function, maybe reset_game()
-valid_response = ["yes", "y", "yeah", "no", "n", "nope"]
-response = ""
-while not response in valid_response:
-    response = input("\nWould you like to play again?: ").lower().strip()
-    if response in ["yes", "y", "yeah"]:
-        current_board = board.create_board()
-        play_game()
-    else:
-        print("\nThanks for playing.")
-        break
-
-
-if __name__ == "__main__":
+playing = True
+while playing == True:
     current_board = board.create_board()
     play_game()
+    valid_responses = ["yes", "y", "yeah", "no", "n", "nope"]
+    response = ""
+    while not response in valid_responses:
+        response = input("\nWould you like play again? ")
+        response = response.lower().strip()
+        if response in ["no", "n", "nope"]:
+            playing = False
+
