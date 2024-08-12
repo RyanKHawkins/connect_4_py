@@ -4,11 +4,11 @@
 import random
 import os
 import time
+import utilities
 
 
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
-
 
 
 def create_board():
@@ -17,8 +17,6 @@ def create_board():
         for column in range(7):
             board[(row, column)] = EMPTY
     return board
-
-
 
 
 EMPTY = "   "
@@ -30,14 +28,12 @@ board = create_board()
 # BOARD_HEIGHT = 7
 
 
-
-
 def display_board(board):
     labels = []
     for row in range(6):
         for column in range(7):
             labels.append(str(board[(row, column)]).center(3))
-    display_title("connect four")
+    utilities.display_title("connect four")
     print("""
   1   2   3   4   5   6   7
 .   .   .   .   .   .   .  .
@@ -62,12 +58,11 @@ def play_turn(player):
     column_choice = input(f"Player {player}, place your piece (1-7): ")
     valid_choice = False
     while not valid_choice:
-        while column_choice not in ["1", "2", "3", "4", "5", "6", "7", "reset"]:
-            if column_choice is reset:
-                reset_game()
+        while column_choice not in ["1", "2", "3", "4", "5", "6", "7"]:
             column_choice = input("Choose from 1 to 7: ")
 
         column = int(column_choice) - 1
+        
         if board[(0, column)] == EMPTY:
             valid_choice = True
         else:
@@ -171,39 +166,21 @@ def diagonal_win(board):
     return False
 
 
-def get_initials(name):
-    initials = ""
-    for name in name.upper().split():
-        initials += name[0]
-    if len(initials) <= 3:
-        return initials
-    else:
-        return f"{initials[0]}{initials[-1]}"
-
-
-def display_title(title):
-    title = "|".join(title.upper())
-    print(f"[{title}]".center(29))
-
-
-board = create_board()
-
-
 def play_game():
     clear()
     winner = ""
-    display_title("connect four")
+    utilities.display_title("connect four")
 
     print()
     num_players = ""
-    while num_players not in [1, 2]:
+    while num_players not in ["1", "2"]:
         num_players = (
-            int(input("\nSelect number of human players (1 or 2):  ")))
+            input("\nSelect number of human players (1 or 2):  "))
     player1 = input("Player 1, what is your name?  ")
-    current_player = get_initials(player1)
+    current_player = utilities.get_initials(player1)
     if num_players == 2:
         player2 = input("Player 2, what is your name?  ")
-        waiting_player = get_initials(player2)
+        waiting_player = utilities.get_initials(player2)
     if num_players == 2 and current_player == waiting_player:
         current_player = str(current_player[0] + "1")
         waiting_player = str(waiting_player[0] + "2")
@@ -231,9 +208,11 @@ def play_game():
 
         current_player, waiting_player = waiting_player, current_player
 
-
+board = create_board()
 play_game()
 
+
+# TODO: Put this in a function, maybe reset_game()
 valid_response = ["yes", "y", "yeah", "no", "n", "nope"]
 response = ""
 while not response in valid_response:
@@ -245,9 +224,7 @@ while not response in valid_response:
         print("\nThanks for playing.")
         break
 
-def reset_game():
-    clear()
-    board = create_board()
-    display_board(board)
-    print("reset game")
-    return
+
+
+# if __name__ == "__main__":
+#     reset_game()
